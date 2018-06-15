@@ -25,7 +25,7 @@ DEFAULT_CAPACITY = 20
     bike.pop
   end
 
-private
+
 
 
   def full?
