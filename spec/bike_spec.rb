@@ -9,10 +9,3 @@ it "can be reported broken" do
   expect(subject).to be_broken
 end
 end
-
-
-
-
-
-
-

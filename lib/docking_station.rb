@@ -19,6 +19,15 @@ class DockingStation
     @bike.pop
   end
 
+private
+
+  def full?
+bike.count >= capacity
+end
+
+  def empty?
+bike.empty?
+  end
 end
 
 #Hello Nabil <3
