@@ -23,7 +23,6 @@ describe DockingStation do
     #not shore what this line is doing
     subject.dock(bike)
     expect(subject.bike).to include bike # need check
-
   end
 
   describe "#release_bike" do
@@ -41,36 +40,37 @@ describe DockingStation do
   end
 
 
-    it "it has a default capacity" do
-      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
-    end
+  it "it has a default capacity" do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
-  describe 'dock' do
+  describe "#dock" do
     it 'raises an error when full' do
       subject.capacity.times { subject.dock Bike.new }
       expect { subject.dock Bike.new }.to raise_error 'Docking station full'
     end
+  end
 
-describe 'initialization' do
-  subject { DockingStation.new }
-  let(:bike) { Bike.new }
-  it 'defaults capacity' do
-    described_class::DEFAULT_CAPACITY.times do
-      subject.dock(bike)
+  describe 'initialization' do
+    subject { DockingStation.new }
+    let(:bike) { Bike.new }
+    it 'defaults capacity' do
+      described_class::DEFAULT_CAPACITY.times do
+        subject.dock(bike)
+      end
+      expect{ subject.dock(bike) }.to raise_error 'Docking station full'
     end
-    expect{ subject.dock(bike) }.to raise_error 'Docking station full'
+  end
+
+  describe 'initialization' do
+    it 'has a variable capacity' do
+      docking_station = DockingStation.new(50)
+      50.times { docking_station.dock Bike.new }
+      expect{ docking_station.dock Bike.new }.to raise_error 'Docking station full'
+    end
   end
 end
 
-describe 'initialization' do
-  it 'has a variable capacity' do
-    docking_station = DockingStation.new(50)
-    50.times { docking_station.dock Bike.new }
-    expect{ docking_station.dock Bike.new }.to raise_error 'Docking station full'
-  end
-end
-  end
 
 
 
